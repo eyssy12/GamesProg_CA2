@@ -3,7 +3,6 @@
 
 #include <string>
 
-using std::string;
 
 class Item
 {
@@ -12,7 +11,7 @@ public:
 
 	enum Reusability
 	{
-		YES = 1, NO = 0
+		YES = true, NO = false
 	};
 
 	enum ItemType
@@ -21,22 +20,26 @@ public:
 	};
 
 	Item();
-	Item(string name, ItemType itemType, Reusability isReusable);
+	Item(std::string name, ItemType itemType, Reusability isReusable);
 
-	string setName(string name);
-	bool setReusability(bool newState);
+	void setName(std::string name);
+	void setItemType(ItemType itemType);
+	void setReusability(Reusability newState);
 
-	ItemType getItemType();
-	string getItemName();
+	virtual ItemType getItemType();
+	virtual std::string getItemName();
 
-	bool isItemReusable();
+	virtual std::string getItemTypeStr();
+	virtual std::string getReusabilityStr();
+
+	Reusability isItemReusable();
 	void printAllItemDetails();
 
 private:
 
-	string name;
+	std::string name;
 	ItemType itemType;
-	bool isReusable;
+	Reusability isReusable;
 
 };
 

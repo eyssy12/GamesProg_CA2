@@ -5,14 +5,12 @@
 #include <string>
 #include "Item.h"
 
-using std::string;
-
 class Weapon : public Item
 {
 
 public:
 	Weapon();
-	Weapon(string name, ItemType itemType, Reusability isReusable, int damageRate);
+	Weapon(std::string name, ItemType itemType, Reusability isReusable, int damageRate);
 
 	int getDamageRate();
 	void setDamageRate(int newDmgRate);

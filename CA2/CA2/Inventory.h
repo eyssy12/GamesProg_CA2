@@ -3,6 +3,8 @@
 
 #include <vector>
 #include "Item.h"
+#include "Weapon.h"
+#include "HealingKit.h"
 
 using std::vector;
 
@@ -10,21 +12,22 @@ class Inventory
 {
 public:
 	Inventory();
-	Inventory(int inventorySize);
 
 	//methods
 	int getInventorySize();
-	int getItemCount();
+	vector<Weapon> getWeapons();
+	vector<HealingKit> getHealingKits();
 
-	void displayItemsByType(Item::ItemType itemType);
 	void displayAllItems();
-	void addItemToInventory(Item newItem);
-	void removeItemFromInventory(int index);
+	void addWeapon(const Weapon& newWeapon);
+	void addHealingKit(const HealingKit& newHealingKit);
+	void removeHealingKit(const int& locations);
+	void removeWeapon(const int& locations);
 
 private:
 
-	// set the size to 10 using the inventorySize variable
-	vector<Item> inventory;
+	vector<Weapon> weapons;
+	vector<HealingKit> healingKits;
 };
 
 #endif

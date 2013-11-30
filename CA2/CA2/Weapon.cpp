@@ -7,16 +7,16 @@
 using namespace std;
 
 Weapon::Weapon()
+:Item("", ItemType::WEAPON, Reusability::NO)
 {
-	
+	damageRate = 0;
 }
 
 Weapon::Weapon(string nName, ItemType nItemType, Reusability nIsReusable, int nDamageRate)
+: Item(nName, nItemType, nIsReusable)
 {
-	//name = nName;
-	//itemType = nItemType;
-	//isReusable = nIsReusable;
-	//damageRate = nDamageRate;
+
+	damageRate = nDamageRate;
 }
 
 int Weapon::getDamageRate()
@@ -31,8 +31,7 @@ void Weapon::setDamageRate(int newDmgRate)
 
 void Weapon::printAllItemDetails()
 {
-	cout << "Name: " << getItemName() << endl
-		<< "Type: " << getItemType() << endl
-		<< "Is reusable: " << isItemReusable() << endl
-		<< "Damage rate: " << damageRate << endl;
+	Item::printAllItemDetails();
+	cout << "Damage rate: " << damageRate << endl;
+	cout << endl;
 }

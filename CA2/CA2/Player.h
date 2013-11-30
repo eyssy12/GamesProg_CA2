@@ -5,39 +5,47 @@
 
 #include "Weapon.h"
 #include "Inventory.h"
-
-using std::string;
+#include "Enemy.h"
 
 class Player
 {
 public:
 
-	// constructor
-	Player(string name, int hp, int exp, int level, Weapon weapon, Inventory playerInventory);
+	// constructors
+	Player(std::string name, Weapon weapon);
+	Player(std::string name, Weapon weapon, Inventory startInventory);
+	Player(std::string name, int exp, int expToNextLvl, int level, Weapon weapon);
 
 	// getters
-	string getName();
+	std::string getName();
 	int getHP();
 	int getExperience();
+	int getExperienceToNextLevel();
 	int getLevel();
 	Weapon getWeapon();
 
 	// setters
-	void setName(string name);
+	void setName(std::string name);
 	void setHP(int hp);
 	void setExp(int exp);
 	void setLevel(int lvl);
 	void setWeapon(Weapon newWeapon);
 
+	void addItemToPlayerInventory(const Item& newItem);
+	bool useHealingPotion();
+
 	// other methods
 	void showPlayerInventory();
+	void showPlayerStats();
 
 private:
 
-	//variables
-	string name;
+	// variables
+	std::string name;
 	int hp;
-	int exp;
+	int maxHp;
+	int currExp;
+	int expToNextLvl;
 	int lvl;
 	Weapon weapon;
 	Inventory playerInventory; //player will start with a basic inventory of 5 medpacks or so

@@ -1,55 +1,66 @@
 #include <iostream>
 
 #include "Inventory.h"
+#include "Utility.h"
 
 using namespace std;
 
-vector<Item>::iterator inventoryIter;
+vector<Weapon>::iterator weaponIter;
+vector<HealingKit>::iterator healingIter;
 
 Inventory::Inventory()
 {
-	inventory;
 }
 
-Inventory::Inventory(int initialSize)
+vector<Weapon> Inventory::getWeapons()
 {
-	inventory; //set the initalsize
+	return weapons;
 }
 
-int Inventory::getInventorySize()
+vector<HealingKit> Inventory::getHealingKits()
 {
-	return inventory.size();
-}
-
-int Inventory::getItemCount()
-{
-	int count = 0;
-
-	for (inventoryIter = inventory.begin(); inventoryIter != inventory.end(); inventoryIter++)
-	{
-		
-
-		//check if inventory contains an item
-	}
-
-	return count;
+	return healingKits;
 }
 
 void Inventory::displayAllItems()
 {
-	for (inventoryIter = inventory.begin(); inventoryIter != inventory.end(); inventoryIter++)
+	if (weapons.size() == 0 && healingKits.size() == 0)
 	{
-		// instead of Healing there will be name, weapon etc...
-		cout << inventoryIter->getItemName() << endl;
+		printMessageWithBorders("Inventory is empty.");
 	}
+	else
+	{
+		for (weaponIter = weapons.begin(); weaponIter != weapons.end(); weaponIter++)
+		{
+			// instead of Healing there will be name, weapon etc...
+			cout << weaponIter->getItemName() << endl;
+		}
+
+		for (healingIter = healingKits.begin(); healingIter != healingKits.end(); healingIter++)
+		{
+			cout << healingIter->getItemName() << endl;
+		}
+	}
+
+	cout << endl;
 }
 
-void Inventory::addItemToInventory(Item newItem)
+void Inventory::removeHealingKit(const int& location)
 {
-	inventory.push_back(newItem);
+	healingKits.erase(healingKits.begin() + location);
 }
 
-void Inventory::removeItemFromInventory(int position)
+void Inventory::removeWeapon(const int& location)
 {
-	// check how to remove an item from a vector based on position
+	weapons.erase(weapons.begin() + location);
+}
+
+void Inventory::addWeapon(const Weapon& newWeapon)
+{
+	weapons.push_back(newWeapon);
+}
+
+void Inventory::addHealingKit(const HealingKit& newHealingKit)
+{
+	healingKits.push_back(newHealingKit);
 }

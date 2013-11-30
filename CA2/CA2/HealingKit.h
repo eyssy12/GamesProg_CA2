@@ -1,19 +1,25 @@
 
+#ifndef HEALINGKIT_H
+#define HEALINGKIT_H
+
 #include <string>
 #include "Item.h"
-
-using std::string;
 
 class HealingKit : public Item
 {
 
 public:
 
-	HealingKit(string name, Item::ItemType itemType, int healingRate);
+	HealingKit();
+	HealingKit(std::string name, ItemType itemType, Reusability isReusable, int healingRate);
 
-	int getHealingRate();
-	void setHealingRate();
+	virtual int getHealingRate();
+	virtual void setHealingRate(int newHealingRate);
+
+	void printAllItemDetails();
 
 private:
 	int healingRate;
 };
+
+#endif
